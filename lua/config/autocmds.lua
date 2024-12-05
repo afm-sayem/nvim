@@ -1,3 +1,14 @@
 -- Autocmds are automatically loaded on the VeryLazy event
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 -- Add any additional autocmds here
+
+local cmd = vim.cmd
+
+-- remove whitespace on save
+cmd([[au BufWritePre * :%s/\s\+$//e]])
+
+-- don't auto commenting new lines
+cmd([[au BufEnter * set fo-=c fo-=r fo-=o]])
+
+-- ain files are toml files
+cmd([[au BufReadPost *.ain set syntax=toml]])
