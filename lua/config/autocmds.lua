@@ -12,3 +12,6 @@ cmd([[au BufEnter * set fo-=c fo-=r fo-=o]])
 
 -- ain files are toml files
 cmd([[au BufReadPost *.ain set syntax=toml]])
+
+-- register eta files for parsing
+vim.treesitter.language.register("embedded_template", "eta") -- the someft filetype will use the python parser and queries.
