@@ -5,6 +5,8 @@ local map = vim.api.nvim_set_keymap
 local default_opts = { noremap = true, silent = true }
 
 map("n", ";", ":", {})
+map("i", "<C-c>", "<esc>", default_opts)
+map("n", "<C-c>", "<esc>", default_opts)
 
 -- buffer management
 map("n", "<leader>n", "<C-^>", default_opts)
@@ -14,7 +16,7 @@ map("n", "<leader>x", ":bd", default_opts)
 map("n", "<leader>p", '"_dP', default_opts)
 
 -- telescope
-map("n", "<leader>o", ":FzfLua<CR>", default_opts)
+map("n", "<leader>o", ":FzfLua files<CR>", default_opts)
 map("n", "<leader>l", ":FzfLua<CR>", default_opts)
 
 --lsp
