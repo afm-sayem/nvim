@@ -8,3 +8,8 @@ opt.termguicolors = true -- enable 24-bit RGB colors
 opt.number = true
 opt.relativenumber = false
 opt.swapfile = false
+
+-- vim.lsp.config('denols', {
+--     on_attach = on_attach,
+--     root_markers = {"deno.json", "deno.jsonc"},
+-- })

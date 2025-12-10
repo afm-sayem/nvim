@@ -6,24 +6,35 @@ return {
   opts = {
     -- add any opts here
     ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
-    provider = "claude", -- Recommend using Claude
-    auto_suggestions_provider = "claude", -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
-    claude = {
-      endpoint = "https://api.anthropic.com",
-      -- model = "claude-3-5-sonnet-20241022",
-      model = "claude-3-7-sonnet-20250219",
-      temperature = 0,
-      max_tokens = 8192,
+    providers = {
+      claude = {
+        endpoint = "https://api.anthropic.com",
+        model = "claude-sonnet-4-20250514",
+        timeout = 30000, -- Timeout in milliseconds
+        extra_request_body = {
+          temperature = 0.75,
+          max_tokens = 20480,
+        },
+      },
+      moonshot = {
+        endpoint = "https://api.moonshot.ai/v1",
+        model = "kimi-k2-0711-preview",
+        timeout = 30000, -- Timeout in milliseconds
+        extra_request_body = {
+          temperature = 0.75,
+          max_tokens = 32768,
+        },
+      },
     },
-    ---Specify the special dual_boost mode
-    ---1. enabled: Whether to enable dual_boost mode. Default to false.
-    ---2. first_provider: The first provider to generate response. Default to "openai".
-    ---3. second_provider: The second provider to generate response. Default to "claude".
-    ---4. prompt: The prompt to generate response based on the two reference outputs.
-    ---5. timeout: Timeout in milliseconds. Default to 60000.
-    ---How it works:
-    --- When dual_boost is enabled, avante will generate two responses from the first_provider and second_provider respectively. Then use the response from the first_provider as provider1_output and the response from the second_provider as provider2_output. Finally, avante will generate a response based on the prompt and the two reference outputs, with the default Provider as normal.
-    ---Note: This is an experimental feature and may not work as expected.
+    acp_providers = {
+      ["codex"] = {
+        command = "codex-acp",
+        env = {
+          NODE_NO_WARNINGS = "1",
+          OPENAI_API_KEY = os.getenv("OPENAI_API_KEY"),
+        },
+      },
+    },
     dual_boost = {
       enabled = false,
       first_provider = "openai",

@@ -18,5 +18,13 @@ cmd([[au BufEnter * set fo-=c fo-=r fo-=o]])
 -- ain files are toml files
 cmd([[au BufReadPost *.ain set syntax=toml]])
 
+vim.filetype.add({
+  extension = {
+    njk = "html", -- Register .myext as having the 'lua' filetype
+  },
+})
+
 -- register eta files for parsing
 vim.treesitter.language.register("embedded_template", "eta") -- the someft filetype will use the python parser and queries.
+-- register nunjucks
+vim.treesitter.language.register("embedded_template", "njk") -- the someft filetype will use the python parser and queries.

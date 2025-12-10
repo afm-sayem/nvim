@@ -19,6 +19,9 @@ map("n", "<leader>p", '"_dP', default_opts)
 map("n", "<leader>o", ":FzfLua files<CR>", default_opts)
 map("n", "<leader>l", ":FzfLua<CR>", default_opts)
 
+-- overseer
+map("n", "<leader>r", ":CompilerOpen <CR>", default_opts)
+
 --lsp
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", default_opts)
 
